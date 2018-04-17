@@ -111,6 +111,7 @@ export default {
         margin: 30px auto;
         a{
             color: $minor;
+            text-underline: none;
         }
     }
     ul li{

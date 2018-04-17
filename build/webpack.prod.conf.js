@@ -73,7 +73,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       'screw-ie8': true,
       sourceMap: true,
       compress: {
-        warnings: false
+          warnings: false,
+          drop_debugger: true,
+          drop_console: true  // 打包时去掉console
       },
       output: {
         comments: false

@@ -2,58 +2,41 @@
     <section>
         <div class="mainBody">
             <div class="tableArea">
-                <h3>Winning Number Today <span style="float: right" @click="loadMore()">更多>></span></h3>
+                <h3 style="border: none"> Winning Number Today <span style="float: right" @click="loadMore()">更多>></span></h3>
                 <div>
-                <el-table
-                        :data="tableData"
-                        align="center"
-                        border
-                        v-loading="loading"
-                        style="width: 70%;">
-                    <el-table-column
-                            prop="lastIndex"
-                            width="250"
-                            label="Last Index">
-                    </el-table-column>
-                    <el-table-column
-                            prop="lastOpenNumber"
-                            label="Last Open Number"
-                            width="200">
-                        <template slot-scope="scope">
+                    <el-table
+                            :data="tableData"
+                            align="center"
+                            border
+                            v-loading="loading"
+                    >
+                        <el-table-column
+                                prop="lastIndex"
+                                width="250"
+                                label="Last Index">
+                        </el-table-column>
+                        <el-table-column
+                                prop="lastOpenNumber"
+                                label="Last Open Number"
+                                width="300">
+                            <template slot-scope="scope">
                             <span class="circle" v-if="scope.row.lastOpenNumber" v-for="item in scope.row.lastOpenNumber.split(',')">
                                 {{item}}
                             </span>
-                        </template>
-                    </el-table-column>
-                    <el-table-column
-                            prop="willopentime"
-                            label="Will Open Time">
-                        <template slot-scope="scope">
-                           {{scope.row.willopentime | getTime}}
-                        </template>
-                    </el-table-column>
-                </el-table>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="willopentime"
+                                label="Will Open Time">
+                            <template slot-scope="scope">
+                                {{scope.row.willopentime | getTime}}
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </div>
-                <ul class="newsRight" >
-                    <li>
-                        <a href="http://boredarticles.com/travel/10-countries-that-dont-want-you-to-visit/?utm_source=taboolanovisit&utm_medium=referral&utm_term=timesofindiapremium-timesofindia">
-                            <img src="~src/assets/images/pc/newspaper.png"/>10 Countries That Don’t Want You To Visit</a>
-                    </li>
-                    <li>
-                        <a href="https://timesofindia.indiatimes.com/videos/city/bhopal/4-year-old-boy-falls-into-40-ft-deep-borewell-in-mp/videoshow/63254014.cms?utm_source=Colombia&utm_medium=OrganicNative&utm_campaign=CTN&utm_term=Video&utm_content=6&utm_ctn=20477847-1"><img src="~src/assets/images/pc/newspaper.png"/>4-year-old boy falls into 40-ft-deep borewell in MP</a>
-                    </li>
-                    <li>
-                        <a href="https://timesofindia.indiatimes.com/videos/news/colourful-carnival-marks-onset-of-spring-in-goa/videoshow/63279145.cms?utm_source=Colombia&utm_medium=OrganicNative&utm_campaign=CTN&utm_term=Video&utm_content=6&utm_ctn=20517283-1"><img src="~src/assets/images/pc/newspaper.png"/>Colourful carnival marks onset of spring in Goa</a>
-                    </li>
-                    <li>
-                        <a href="https://timesofindia.indiatimes.com/city/kolkata/man-found-with-smashed-head-opposite-fancy-market/articleshow/62829099.cms?&utm_source=Articleshow&utm_medium=Organic&utm_campaign=Related_Stories"><img src="~src/assets/images/pc/newspaper.png"/>Man found with smashed head opposite Fancy Market</a>
-                    </li>
-                    <li>
-                        <a href="https://timesofindia.indiatimes.com/city/coimbatore/70-year-old-woman-found-dead-with-head-smashed/articleshow/62200439.cms?&utm_source=Articleshow&utm_medium=Organic&utm_campaign=Related_Stories"><img src="~src/assets/images/pc/newspaper.png"/>70-year-old woman found dead with head smashed</a>
-                    </li>
-                </ul>
-                <h3>Precious News</h3>
-                <ul class="newsBottom" style="width: 70%">
+
+                <h3 style="border: none">Precious News</h3>
+                <ul class="newsBottom">
                     <a href="https://timesofindia.indiatimes.com/city/delhi/pub-manager-hit-for-not-serving-liquor-after-hours/articleshow/63275927.cms"><li>
                         <h6>Pub manager hit for not serving liquor after hours</h6>
                         <p>NEW DELHI: The manager and co-owner of the Boom Box Cafe in Rajouri Garden was brutally beaten up by a group of men as he refused to serve them alcohol after 1am on Saturday.....</p>
@@ -76,6 +59,10 @@
                         <h6>The 10 Worst Countries To Raise Kids & Start A Family</h6>
                         <p>While there are many unfit international territories in which to have children and raise a family, there are some to avoid at all costs. There are many factors to consider when determining which countries are the most unfit for bringing up children in, including overall safety, crime rate, healthcare systems, and the quality of education. </p>
                     </li></a>
+                    <a href="https://timesofindia.indiatimes.com/city/ghaziabad/girls-body-found-with-head-smashed/articleshow/63291823.cms?&utm_source=Articleshow&utm_medium=Organic&utm_campaign=Related_Stories"><li>
+                        <h6>Girl’s body found with head smashed</h6>
+                        <p>GHAZIABAD: A 17-year-old girl was found dead with much of her clothing removed and head smashed in Sihani Chungi of Ghaziabad on Monday.</p>
+                    </li></a>
                 </ul>
             </div>
         </div>
@@ -87,15 +74,13 @@
     export default {
         data () {
             return {
-                tableData:  [],
-                loading: false
+                tableData:  []
             }
         },
         methods:{
             loadMore () {
-                window.location.href = '#/india/history'
-            },
-
+                window.location.href = '#/brazil/history'
+            }
         },
         filters: {
             getTime (time) {
@@ -103,9 +88,9 @@
             }
         },
         created () {
-            //新德里
+            //巴西
             this.loading = true
-            api.getBonus('06').then(res => {
+            api.getBonus('07').then(res => {
                 console.log(res, 'home')
                 this.tableData.push(res.data)
                 this.loading = false
@@ -129,16 +114,16 @@
         background: white;
         h3{
             padding-left: 10px;
-            border-left: 2px solid $Danger;
-            color: $Danger;
-            margin: 20px 0;
-            width: 70%;
+            border-left: 2px solid $brazilTwo;
+            color: $brazilTwo;
+            margin: 30px 0;
+            width: 100%;
             span{
                 color: $minor;
                 font-size: 12px;
                 &:hover{
                     cursor: pointer;
-                    color: $Danger;
+                    color: $brazilTwo;
                 }
             }
         }
@@ -156,6 +141,7 @@
                     border-bottom: 1px dashed #DCDCDC;
                     padding: 20px 10px;
                     font-size: 12px;
+
                     img{
                         width: 20px;
                         margin-right: 5px;
@@ -167,17 +153,23 @@
                 }
                 li>a:hover{
                     cursor: pointer;
-                    color: $Danger;
+                    color: $brazilTwo;
                     text-decoration: none;
                 }
             }
             ul.newsBottom{
                 background: #f5f7fa;
-                padding-left: 10px;
-                padding-right: 10px;
+                padding: 10px;
+                overflow: hidden;
                 li{
-                    border-bottom: 1px dashed #dcdcdc;
-                    padding: 20px 0;
+                    background: white;
+                    padding: 20px 10px;
+                    margin: 10px;
+                    border-radius: 6px;
+                    box-shadow: 4px 2px 2px #dcdcdc;
+                    float: left;
+                    height: 150px;
+                    width: 48%;
                     h6{
                         font-size: 16px;
                         font-weight: 100;
@@ -187,7 +179,7 @@
                         font-size: 12px;
                     }
                     &:hover{
-                        color: $Danger;
+                        color: $brazilTwo;
                         cursor: pointer;
                     }
                 }
@@ -201,7 +193,7 @@
         text-align: center;
         line-height: 20px;
         color: white;
-        background: $Danger;
+        background: $brazil;
         display: inline-block;
         margin-right: 5px;
     }

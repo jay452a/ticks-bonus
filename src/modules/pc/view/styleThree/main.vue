@@ -56,7 +56,7 @@ export default {
         document.onscroll = function () {
             let scroll = document.documentElement.scrollTop || document.body.scrollTop
             console.log(scroll)
-            if ( scroll > 800) {
+            if ( scroll > 750) {
                 _this.isfixed = true
             } else {
                 _this.isfixed = false

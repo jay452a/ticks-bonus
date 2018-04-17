@@ -11,7 +11,7 @@ const baseWebpackConfig = require('./webpack.base.conf')
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
-
+// 多页面打包，遍历modeles目录下的.html文件
 var WPHtmls = glob.sync('./src/modules/**/*.html').map(function (item) {
     return new HtmlWebpackPlugin({
         filename: './' + item.slice(14),

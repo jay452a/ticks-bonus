@@ -129,5 +129,10 @@ export default {
     var scrollTop=0;
     scrollTop = document.getElementById(div).scrollTop
     return scrollTop;
-  }
+  },
+    urlEncode (json, key) {
+        return Object.keys(json).map(function (key) {
+            return encodeURIComponent(key) + "=" + encodeURIComponent(json[key]);
+        }).join("&");
+    }
 };

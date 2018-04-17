@@ -3,27 +3,36 @@
         <div class="mainBody">
             <div class="tableArea">
                 <h3>Winning Number Today <span style="float: right" @click="loadMore()">更多>></span></h3>
-                <div style="min-height: 300px">
-                <el-table
-                        :data="tableData"
-                        align="center"
-                        border
-                        style="width: 70%;">
-                    <el-table-column
-                            prop="date"
-                            label="Date"
-                            width="200">
-                    </el-table-column>
-                    <el-table-column
-                            prop="times"
-                            label="Times"
-                            width="100">
-                    </el-table-column>
-                    <el-table-column
-                            prop="WinningNumber"
-                            label="Winning Number">
-                    </el-table-column>
-                </el-table>
+                <div>
+                    <el-table
+                            :data="tableData"
+                            align="center"
+                            border
+                            v-loading="loading"
+                            style="width: 70%;">
+                        <el-table-column
+                                prop="lastIndex"
+                                width="250"
+                                label="Last Index">
+                        </el-table-column>
+                        <el-table-column
+                                prop="lastOpenNumber"
+                                label="Last Open Number"
+                                width="200">
+                            <template slot-scope="scope">
+                            <span class="circle" v-if="scope.row.lastOpenNumber" v-for="item in scope.row.lastOpenNumber.split(',')">
+                                {{item}}
+                            </span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                                prop="willopentime"
+                                label="Will Open Time">
+                            <template slot-scope="scope">
+                                {{scope.row.willopentime | getTime}}
+                            </template>
+                        </el-table-column>
+                    </el-table>
                 </div>
                 <ul class="newsRight">
                     <li>
@@ -44,7 +53,7 @@
                     </li>
                 </ul>
                 <h3>Precious News</h3>
-                <ul class="newsBottom">
+                <ul class="newsBottom" style="width:70%;">
                     <a href="https://timesofindia.indiatimes.com/city/delhi/pub-manager-hit-for-not-serving-liquor-after-hours/articleshow/63275927.cms"><li>
                         <h6>Pub manager hit for not serving liquor after hours</h6>
                         <p>NEW DELHI: The manager and co-owner of the Boom Box Cafe in Rajouri Garden was brutally beaten up by a group of men as he refused to serve them alcohol after 1am on Saturday.....</p>
@@ -73,32 +82,38 @@
     </section>
 </template>
 <script>
+    import api from 'api/api.js'
+    import utils from 'src/common/js/util'
     export default {
         data () {
             return {
-                tableData:  [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }]
+                tableData:  []
             }
         },
         methods:{
             loadMore () {
-                window.location.href = '#/styleTwoMain/history'
+                window.location.href = '#/germany/history'
             }
+        },
+        filters: {
+            getTime (time) {
+                return utils.formatTime(time, 'YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        created () {
+            //德国
+            this.loading = true
+            api.getBonus('08').then(res => {
+                console.log(res, 'home')
+                this.tableData.push(res.data)
+                this.loading = false
+            }, err => {
+                this.$message({
+                    message: err,
+                    type: 'warning'
+                });
+                this.loading = false
+            })
         }
     }
 </script>
@@ -109,6 +124,7 @@
         width: 1150px;
         margin:  0 auto;
         padding-top: 15px;
+        background: white;
         h3{
             padding-left: 10px;
             border-left: 2px solid $Warning;
@@ -150,6 +166,7 @@
                 li>a:hover{
                     cursor: pointer;
                     color: $Warning;
+                    text-decoration: none;
                 }
             }
             ul.newsBottom{
@@ -174,5 +191,16 @@
                 }
             }
         }
+    }
+    span.circle{
+        width: 20px;
+        height:20px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        color: white;
+        background: $Warning;
+        display: inline-block;
+        margin-right: 5px;
     }
 </style>

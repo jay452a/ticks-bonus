@@ -9,6 +9,12 @@ a {
   text-decoration: none;
   color: #324057;
 }
+body{
+  background: white !important;
+}
+a:hover{
+  text-decoration: none;
+}
 .clearfix:after {
   content: '.';
   display: block;

@@ -29,19 +29,19 @@
                 <ul class="newsRight">
                     <li>
                         <a href="http://boredarticles.com/travel/10-countries-that-dont-want-you-to-visit/?utm_source=taboolanovisit&utm_medium=referral&utm_term=timesofindiapremium-timesofindia">
-                            <img src="~src/assets/images/pc/styleFive/news.png"/>10 Countries That Don’t Want You To Visit</a>
+                            <img src="~src/assets/images/pc/styleSix/jnews.png"/>10 Countries That Don’t Want You To Visit</a>
                     </li>
                     <li>
-                        <a href="https://timesofindia.indiatimes.com/videos/city/bhopal/4-year-old-boy-falls-into-40-ft-deep-borewell-in-mp/videoshow/63254014.cms?utm_source=Colombia&utm_medium=OrganicNative&utm_campaign=CTN&utm_term=Video&utm_content=6&utm_ctn=20477847-1"><img src="~src/assets/images/pc/styleFive/news.png"/>4-year-old boy falls into 40-ft-deep borewell in MP</a>
+                        <a href="https://timesofindia.indiatimes.com/videos/city/bhopal/4-year-old-boy-falls-into-40-ft-deep-borewell-in-mp/videoshow/63254014.cms?utm_source=Colombia&utm_medium=OrganicNative&utm_campaign=CTN&utm_term=Video&utm_content=6&utm_ctn=20477847-1"><img src="~src/assets/images/pc/styleSix/jnews.png"/>4-year-old boy falls into 40-ft-deep borewell in MP</a>
                     </li>
                     <li>
-                        <a href="https://timesofindia.indiatimes.com/videos/news/colourful-carnival-marks-onset-of-spring-in-goa/videoshow/63279145.cms?utm_source=Colombia&utm_medium=OrganicNative&utm_campaign=CTN&utm_term=Video&utm_content=6&utm_ctn=20517283-1"><img src="~src/assets/images/pc/styleFive/news.png"/>Colourful carnival marks onset of spring in Goa</a>
+                        <a href="https://timesofindia.indiatimes.com/videos/news/colourful-carnival-marks-onset-of-spring-in-goa/videoshow/63279145.cms?utm_source=Colombia&utm_medium=OrganicNative&utm_campaign=CTN&utm_term=Video&utm_content=6&utm_ctn=20517283-1"><img src="~src/assets/images/pc/styleSix/jnews.png"/>Colourful carnival marks onset of spring in Goa</a>
                     </li>
                     <li>
-                        <a href="https://timesofindia.indiatimes.com/city/kolkata/man-found-with-smashed-head-opposite-fancy-market/articleshow/62829099.cms?&utm_source=Articleshow&utm_medium=Organic&utm_campaign=Related_Stories"><img src="~src/assets/images/pc/styleFive/news.png"/>Man found with smashed head opposite Fancy Market</a>
+                        <a href="https://timesofindia.indiatimes.com/city/kolkata/man-found-with-smashed-head-opposite-fancy-market/articleshow/62829099.cms?&utm_source=Articleshow&utm_medium=Organic&utm_campaign=Related_Stories"><img src="~src/assets/images/pc/styleSix/jnews.png"/>Man found with smashed head opposite Fancy Market</a>
                     </li>
                     <li>
-                        <a href="https://timesofindia.indiatimes.com/city/coimbatore/70-year-old-woman-found-dead-with-head-smashed/articleshow/62200439.cms?&utm_source=Articleshow&utm_medium=Organic&utm_campaign=Related_Stories"><img src="~src/assets/images/pc/styleFive/news.png"/>70-year-old woman found dead with head smashed</a>
+                        <a href="https://timesofindia.indiatimes.com/city/coimbatore/70-year-old-woman-found-dead-with-head-smashed/articleshow/62200439.cms?&utm_source=Articleshow&utm_medium=Organic&utm_campaign=Related_Stories"><img src="~src/assets/images/pc/styleSix/jnews.png"/>70-year-old woman found dead with head smashed</a>
                     </li>
                 </ul>
                 <span style="margin-right: 10px">第&nbsp{{currentPage}}&nbsp页</span>
@@ -78,7 +78,7 @@
             getList () {
                 this.loading = true
                 let param = {
-                    lotteryCode: '11',// 不单
+                    lotteryCode: '07',// 巴西
                     pageIndex: this.currentPage,
                     pageSize: this.pageSize
                 }
@@ -126,8 +126,8 @@
         padding-top: 15px;
         h3{
             padding-left: 10px;
-            border-left: 2px solid $LightSilver;
-            color: $LightSilver;
+            border-left: 2px solid $brazilTwo;
+            color: $brazilTwo;
             margin: 20px 0;
             width: 70%;
             span{
@@ -135,7 +135,7 @@
                 font-size: 12px;
                 &:hover{
                     cursor: pointer;
-                    color: $LightSilver;
+                    color: $brazilTwo;
                 }
             }
         }
@@ -160,7 +160,7 @@
                     font-size: 12px;
                     margin: 5px 0;
                     img{
-                        width: 20px;
+                        width: 30px;
                         margin-right: 5px;
                         vertical-align: bottom;
                     }
@@ -170,7 +170,7 @@
                 }
                 li>a:hover{
                     cursor: pointer;
-                    color: $LightSilver;
+                    color: $brazilTwo;
                 }
             }
             ul.newsBottom{
@@ -186,7 +186,7 @@
                         font-size: 12px;
                     }
                     &:hover{
-                        color: $LightSilver;
+                        color: $brazilTwo;
                         cursor: pointer;
                     }
                 }

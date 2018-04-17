@@ -19,24 +19,28 @@ const styleFourHistory = () => import(/* webpackChunkName: "group-route" */ 'mod
 const styleFiveMain = () => import(/* webpackChunkName: "group-route" */ 'modules/pc/view/styleFive/main.vue');
 const styleFiveHome = () => import(/* webpackChunkName: "group-route" */ 'modules/pc/view/styleFive/home.vue');
 const styleFiveHistory = () => import(/* webpackChunkName: "group-route" */ 'modules/pc/view/styleFive/history.vue');
+
+const styleSixMain = () => import(/* webpackChunkName: "group-route" */ 'modules/pc/view/styleSix/main.vue');
+const styleSixHome = () => import(/* webpackChunkName: "group-route" */ 'modules/pc/view/styleSix/home.vue');
+const styleSixHistory = () => import(/* webpackChunkName: "group-route" */ 'modules/pc/view/styleSix/history.vue');
 Vue.use(VueRouter);
 
 export default new VueRouter({
   routes: [
     {
-      path: '/styleOneMain',
-      name: 'styleOneMain',
+      path: '/india',
+      name: 'india',
       component: styleOneMain,
-      meta: { title: 'style-one' },
+      meta: { title: 'india' },
       children: [
           {
-              path: '/styleOneMain/Home',
+              path: '/india/Home',
               name: 'styleOneHome',
               component: styleOneHome,
               meta: { title: 'styleOneHome' },
           },
           {
-              path: '/styleOneMain/history',
+              path: '/india/history',
               name: 'styleOneHistory',
               component: styleOneHistory,
               meta: { title: 'styleOneHistory' },
@@ -45,19 +49,19 @@ export default new VueRouter({
     },
 
       {
-          path: '/styleTwoMain',
-          name: 'styleTwoMain',
+          path: '/germany',
+          name: 'germany',
           component: styleTwoMain,
-          meta: { title: 'style-two' },
+          meta: { title: 'germany' },
           children: [
               {
-                  path: '/styleTwoMain/Home',
+                  path: '/germany/Home',
                   name: 'styleTwoHome',
                   component: styleTwoHome,
                   meta: { title: 'styleTwoHome' },
               },
               {
-                  path: '/styleTwoMain/history',
+                  path: '/germany/history',
                   name: 'styleTwoHistory',
                   component: styleTwoHistory,
                   meta: { title: 'styleTwoHistory' },
@@ -66,19 +70,19 @@ export default new VueRouter({
       },
 
       {
-          path: '/styleThreeMain',
+          path: '/vietnam',
           name: 'styleThreeMain',
           component: styleThreeMain,
-          meta: { title: 'style-three' },
+          meta: { title: 'Vietnam' },
           children: [
               {
-                  path: '/styleThreeMain/Home',
+                  path: '/vietnam/Home',
                   name: 'styleThreeHome',
                   component: styleThreeHome,
                   meta: { title: 'styleThreeHome' },
               },
               {
-                  path: '/styleThreeMain/history',
+                  path: '/vietnam/history',
                   name: 'styleThreeHistory',
                   component: styleThreeHistory,
                   meta: { title: 'styleThreeHistory' },
@@ -87,19 +91,19 @@ export default new VueRouter({
       },
 
       {
-          path: '/styleFourMain',
+          path: '/austrilia',
           name: 'styleFourMain',
           component: styleFourMain,
-          meta: { title: 'style-four' },
+          meta: { title: 'austrilia' },
           children: [
               {
-                  path: '/styleFourMain/Home',
+                  path: '/austrilia/Home',
                   name: 'styleFourHome',
                   component: styleFourHome,
                   meta: { title: 'styleFourHome' },
               },
               {
-                  path: '/styleFourMain/history',
+                  path: '/austrilia/history',
                   name: 'styleFourHistory',
                   component: styleFourHistory,
                   meta: { title: 'styleFourHistory' },
@@ -108,19 +112,19 @@ export default new VueRouter({
       },
 
       {
-          path: '/styleFiveMain',
+          path: '/bhutan',
           name: 'styleFiveMain',
           component: styleFiveMain,
-          meta: { title: 'style-five' },
+          meta: { title: 'bhutan' },
           children: [
               {
-                  path: '/styleFiveMain/Home',
+                  path: '/bhutan/Home',
                   name: 'styleFiveHome',
                   component: styleFiveHome,
                   meta: { title: 'styleFiveHome' },
               },
               {
-                  path: '/styleFiveMain/history',
+                  path: '/bhutan/history',
                   name: 'styleFiveHistory',
                   component: styleFiveHistory,
                   meta: { title: 'styleFiveHistory' },
@@ -128,9 +132,30 @@ export default new VueRouter({
           ]
       },
 
+      {
+          path: '/brazil',
+          name: 'styleSixMain',
+          component: styleSixMain,
+          meta: { title: 'brazil' },
+          children: [
+              {
+                  path: '/brazil/Home',
+                  name: 'styleSixHome',
+                  component: styleSixHome,
+                  meta: { title: 'styleSixHome' },
+              },
+              {
+                  path: '/brazil/history',
+                  name: 'styleSixHistory',
+                  component: styleSixHistory,
+                  meta: { title: 'styleSixHistory' },
+              }
+          ]
+      },
+
     {
       path: '*',
-      redirect: '/styleOneMain/Home'
+      redirect: '/india/Home'
     }
   ]
 });

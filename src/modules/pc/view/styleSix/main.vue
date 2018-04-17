@@ -2,18 +2,18 @@
     <section>
         <header>
             <div class="headerMain">
-                <span><img src="~src/assets/images/pc/styleFive/dollar-symbol-1.png" style="width: 40px;vertical-align: middle"/></span>
+                <span><img src="~src/assets/images/pc/styleSix/money.png" style="width: 40px;vertical-align: middle"/></span>
                 <label>Have a good luck !!!</label>
             </div>
        </header>
-        <img src="~src/assets/images/pc/styleFive/banner5.jpg" style="height: 350px"/>
+        <img src="~src/assets/images/pc/styleSix/bannerBrazil_02.jpg"/>
         <nav :class="{isfixed: isfixed}" id="nav">
             <ul>
-                <router-link :to="{ name: 'styleFiveHome' }">
+                <router-link :to="{ name: 'styleSixHome' }">
                     <li :class="{active: isActive.home}" style="border-right: 1px solid #dcdcdc">
                         <p><i class="icon-home" style="font-size: 30px"></i></p>Home</li>
                 </router-link>
-                <router-link :to="{name: 'styleFiveHistory'}">
+                <router-link :to="{name: 'styleSixHistory'}">
                     <li :class="{active: !isActive.home}">
                         <p><i class="icon-history-o" style="font-size: 30px"></i></p>History</li>
                 </router-link>
@@ -36,9 +36,9 @@ export default {
     },
     methods: {
       renderNav (val) {
-          if (val.name === 'styleFiveHome') {
+          if (val.name === 'styleSixHome') {
               this.isActive.home = true
-          } else if (val.name === 'styleFiveHistory') {
+          } else if (val.name === 'styleSixHistory') {
               this.isActive.home = false
           }
       }
@@ -70,9 +70,6 @@ export default {
 </script>
 <style lang="scss" scoped>
     @import '~styles/base/vars';
-    body{
-        background: white;
-    }
     img{
         width: 100%;
         display: inline-block;
@@ -89,7 +86,7 @@ export default {
             margin: 0 auto;
             label{
                 font-size: 20px;
-                color: $LightSilver;
+                color: $brazil;
                 margin-left: 30px;
                 position: relative;
                 top:5px;
@@ -125,7 +122,7 @@ export default {
             cursor: pointer;
         }
         &.active{
-            color: $LightSilver;
+            color: $brazil;
         }
         img{
             width: 20px;

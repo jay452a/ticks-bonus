@@ -15,8 +15,9 @@ io.interceptors.request.use(
 //  响应
 io.interceptors.response.use(
   response => {
-    if (response.data.resCode === '0' || response.data.resultCode === '200') {
-      return response.data.data;
+    if (response.code === 200 || response.data.code === 200) {
+      return response.data;
+
     } else if (response.data.head && response.data.head.resultCode === '200') {
       return response.data.body;
     }

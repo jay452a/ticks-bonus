@@ -3,25 +3,34 @@
         <div class="mainBody">
             <div class="tableArea">
                 <h3 style="text-align: center;border: none"> Winning Number Today <span style="float: right" @click="loadMore()">更多>></span></h3>
-                <div style="min-height: 300px">
+                <div>
                     <el-table
                             :data="tableData"
                             align="center"
                             border
-                            style="width: 100%;">
+                            v-loading="loading"
+                    >
                         <el-table-column
-                                prop="date"
-                                label="Date"
-                                width="200">
+                                prop="lastIndex"
+                                width="250"
+                                label="Last Index">
                         </el-table-column>
                         <el-table-column
-                                prop="times"
-                                label="Times"
-                                width="100">
+                                prop="lastOpenNumber"
+                                label="Last Open Number"
+                                width="300">
+                            <template slot-scope="scope">
+                            <span class="circle" v-if="scope.row.lastOpenNumber" v-for="item in scope.row.lastOpenNumber.split(',')">
+                                {{item}}
+                            </span>
+                            </template>
                         </el-table-column>
                         <el-table-column
-                                prop="WinningNumber"
-                                label="Winning Number">
+                                prop="willopentime"
+                                label="Will Open Time">
+                            <template slot-scope="scope">
+                                {{scope.row.willopentime | getTime}}
+                            </template>
                         </el-table-column>
                     </el-table>
                 </div>
@@ -56,32 +65,38 @@
     </section>
 </template>
 <script>
+    import api from 'api/api.js'
+    import utils from 'src/common/js/util'
     export default {
         data () {
             return {
-                tableData:  [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }]
+                tableData:  []
             }
         },
         methods:{
             loadMore () {
-                window.location.href = '#/styleFourMain/history'
+                window.location.href = '#/austrilia/history'
             }
+        },
+        filters: {
+            getTime (time) {
+                return utils.formatTime(time, 'YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        created () {
+            //澳洲
+            this.loading = true
+            api.getBonus('10').then(res => {
+                console.log(res, 'home')
+                this.tableData.push(res.data)
+                this.loading = false
+            }, err => {
+                this.$message({
+                    message: err,
+                    type: 'warning'
+                });
+                this.loading = false
+            })
         }
     }
 </script>
@@ -92,6 +107,7 @@
         width: 1150px;
         margin:  0 auto;
         padding-top: 15px;
+        background: white;
         h3{
             padding-left: 10px;
             border-left: 2px solid $LightBlue;
@@ -133,6 +149,7 @@
                 li>a:hover{
                     cursor: pointer;
                     color: $LightBlue;
+                    text-decoration: none;
                 }
             }
             ul.newsBottom{
@@ -159,5 +176,16 @@
                 }
             }
         }
+    }
+    span.circle{
+        width: 20px;
+        height:20px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        color: white;
+        background: $LightBlue;
+        display: inline-block;
+        margin-right: 5px;
     }
 </style>

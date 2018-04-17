@@ -7,20 +7,23 @@
                         :data="tableData"
                         align="center"
                         border
+                        v-loading="loading"
                         style="width: 70%;margin-bottom: 20px">
                     <el-table-column
-                            prop="date"
-                            label="Date"
+                            prop="openedIndex"
+                            width="250"
+                            label="Opened Index">
+                    </el-table-column>
+                    <el-table-column
+                            prop="openedNumber"
+                            label="Opened Number"
                             width="200">
                     </el-table-column>
                     <el-table-column
-                            prop="times"
-                            label="Times"
-                            width="100">
-                    </el-table-column>
-                    <el-table-column
-                            prop="WinningNumber"
-                            label="Winning Number">
+                            label="Opened Time">
+                        <template slot-scope="scope">
+                            {{scope.row.openedTime | getTime}}
+                        </template>
                     </el-table-column>
                 </el-table>
                 <ul class="newsRight">
@@ -41,51 +44,76 @@
                         <a href="https://timesofindia.indiatimes.com/city/coimbatore/70-year-old-woman-found-dead-with-head-smashed/articleshow/62200439.cms?&utm_source=Articleshow&utm_medium=Organic&utm_campaign=Related_Stories"><img src="~src/assets/images/pc/styleTwo/news.png"/>70-year-old woman found dead with head smashed</a>
                     </li>
                 </ul>
-                <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="currentPage"
-                        :page-sizes="[15, 20, 30, 40]"
-                        :page-size="100"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="400">
-                </el-pagination>
+                <span style="margin-right: 10px">第&nbsp{{currentPage}}&nbsp页</span>
+                <el-button type="primary" @click="prevPage()">上一页</el-button>
+                <el-button type="primary" @click="nextPage()">下一页</el-button>
             </div>
         </div>
 
     </section>
 </template>
 <script>
+    import api from 'api/api.js'
+    import utils from 'src/common/js/util'
     export default {
         data () {
             return {
-                tableData:  [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄'
-                }],
-                currentPage: 5,
+                tableData:  [],
+                currentPage: 1,
+                pageSize: 20,
+                loading: false
             }
         },
         methods:{
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
+                this.pageSize = val
+                this.getList()
             },
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
+                this.currentPage = val
+                this.getList()
+            },
+            getList () {
+                this.loading = true
+                let param = {
+                    lotteryCode: '08',// 德国
+                    pageIndex: this.currentPage,
+                    pageSize: this.pageSize
+                }
+                api.getHistoryBonus(param).then(res => {
+                    console.log(res, 'his')
+                    this.tableData = res.data
+                    this.loading = false
+                }, err => {
+                    this.$message({
+                        message: err,
+                        type: 'warning'
+                    });
+                    this.loading = false
+                })
+            },
+            prevPage () {
+                if(this.currentPage>1) {
+                    this.currentPage--
+                    this.getList()
+                }else {
+                    return
+                }
+            },
+            nextPage () {
+                this.currentPage++
+                this.getList()
             }
+        },
+        filters: {
+            getTime (time) {
+                return utils.formatTime(time, 'YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        created () {
+            this.getList()
         }
     }
 </script>
